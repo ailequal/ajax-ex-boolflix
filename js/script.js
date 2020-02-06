@@ -3,7 +3,7 @@ $(document).ready(function (){
   // click on the button 'cerca'
   $(document).on('click', '.search button', function() {
     // query is saved from the input field
-    var query = $('.search input').val();
+    var query = $('.search input').val().toLowerCase();
     console.log(query);
     if (query !== '') {
       // clear input field after the click
@@ -13,7 +13,23 @@ $(document).ready(function (){
     } else {
       noInput();
     }
+  });
 
+  // press enter on the keyboard
+  $(document).keydown(function() {
+    if (event.which === 13) {
+      // query is saved from the input field
+      var query = $('.search input').val().toLowerCase();
+      console.log(query);
+      if (query !== '') {
+        // clear input field after the keypress
+        $('.search input').val('');
+        // start search function
+        searchMovies(query);
+      } else {
+        noInput();
+      }
+    }
   });
 
 });
@@ -108,8 +124,8 @@ function noInput() {
 
 // notes
 // to-do
+// handlebars init doesn't work
 // if original title equals title show only one
-// start the search with enter key
 // add language selector
 
 // API Key (v3 auth)
