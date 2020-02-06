@@ -1,7 +1,7 @@
 $(document).ready(function (){
 
-  var language = '';
-  // store language option variable (doesn't work)
+  // store language option variable
+  var language = 'it';
   $(document).on('change', '.search select', function() {
     language = $('.search select').val();
     console.log(language);
@@ -16,7 +16,7 @@ $(document).ready(function (){
       // clear input field after the click
       $('.search input').val('');
       // start search function
-      searchMovies(query);
+      searchMovies(query, language);
     } else {
       noInput();
     }
@@ -32,7 +32,7 @@ $(document).ready(function (){
         // clear input field after the keypress
         $('.search input').val('');
         // start search function
-        searchMovies(query);
+        searchMovies(query, language);
       } else {
         noInput();
       }
@@ -44,7 +44,7 @@ $(document).ready(function (){
 
 // function
 // search the query using the api_key
-function searchMovies(query) {
+function searchMovies(query, language) {
   // ajax calling themoviedb.org api for searching movies (max 20 displayed)
   $.ajax({
     url: "https://api.themoviedb.org/3/search/movie",
@@ -52,7 +52,7 @@ function searchMovies(query) {
     data: {
       api_key: '6258744f8a6314eddb8961371f91076e',
       query: query,
-      language: 'it'
+      language: language
     },
     success: function(data, state) {
       var movies = data.results;
@@ -142,7 +142,6 @@ function noInput() {
 // to-do
 // handlebars init doesn't work
 // click and enter in the same condition
-// add language selector
 
 // API Key (v3 auth)
 // 6258744f8a6314eddb8961371f91076e
