@@ -72,13 +72,22 @@ function printMovies(movies) {
   // search every movies
   for (var i = 0; i < movies.length; i++) {
     var movie = movies[i];
+    // check if the title is the same as the original title
+    if (movie.title === movie.original_title) {
+      var context = {
+        title: movie.title,
+        original_language: movie.original_language,
+        vote_average: movie.vote_average,
+      };
+    } else {
+      var context = {
+        title: movie.title,
+        original_title: movie.original_title,
+        original_language: movie.original_language,
+        vote_average: movie.vote_average,
+      };
+    }
     // handlebars append
-    var context = {
-      title: movie.title,
-      original_title: movie.original_title,
-      original_language: movie.original_language,
-      vote_average: movie.vote_average,
-    };
     var html = template(context);
     $('.movies').append(html);
   }
