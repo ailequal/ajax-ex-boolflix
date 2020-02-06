@@ -4,25 +4,30 @@ $(document).ready(function (){
   var source = $('#template').html();
   var template = Handlebars.compile(source);
 
-  // var
+  // query
   var query = 'star wars';
 
-  // ajax
+  // ajax calling the themoviedb api
   $.ajax({
     url: "https://api.themoviedb.org/3/search/movie",
     method: "GET",
     data: {
       api_key: '6258744f8a6314eddb8961371f91076e',
-      query: query
+      query: query,
+      language: 'it-IT'
     },
     success: function(data, state) {
-      console.log(data.results);
       var movies = data.results;
+      console.log(movies);
+      // search every movies
       for (var i = 0; i < movies.length; i++) {
         var movie = movies[i];
         // handlebars append
         var context = {
           title: movie.title,
+          original_title: movie.original_title,
+          original_language: movie.original_language,
+          vote_average: movie.vote_average,
         };
         var html = template(context);
         $('.movies').append(html);
