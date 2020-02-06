@@ -1,10 +1,11 @@
 $(document).ready(function (){
 
+  var language = '';
   // store language option variable (doesn't work)
-  // $(document).on('click', '.search select', function() {
-  //   var language = $('.search select').val();
-  //   console.log(language);
-  // });
+  $(document).on('change', '.search select', function() {
+    language = $('.search select').val();
+    console.log(language);
+  });
 
   // click on the button 'cerca'
   $(document).on('click', '.search button', function() {
