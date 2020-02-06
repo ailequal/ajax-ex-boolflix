@@ -1,13 +1,18 @@
 $(document).ready(function (){
 
+  // click on the button 'cerca'
   $(document).on('click', '.search button', function() {
     // query is saved from the input field
     var query = $('.search input').val();
     console.log(query);
-    // clear input field after the click
-    $('.search input').val('');
-
-    searchMovies(query);
+    if (query !== '') {
+      // clear input field after the click
+      $('.search input').val('');
+      // start search function
+      searchMovies(query);
+    } else {
+      noInput();
+    }
 
   });
 
@@ -28,8 +33,12 @@ function searchMovies(query) {
     },
     success: function(data, state) {
       var movies = data.results;
-      console.log(movies);
-      printMovies(movies);
+      if (movies.length !== 0) {
+        console.log(movies);
+        printMovies(movies);
+      } else {
+        noMovies();
+      }
     },
     error: function(request, state, error) {
       console.log(error);
@@ -59,10 +68,46 @@ function printMovies(movies) {
   }
 }
 
+// display a message when no movies are found
+function noMovies() {
+  // clear movies field in the html
+  $('.movies').text('');
+  // handlebars init
+  var source = $('#template').html();
+  var template = Handlebars.compile(source);
+  // handlebars append
+  var context = {
+    title: 'Nessun film trovato'
+  };
+  var html = template(context);
+  $('.movies').append(html);
+}
+
+// display a message when nothing is written in the input field
+function noInput() {
+  // clear movies field in the html
+  $('.movies').text('');
+  // handlebars init
+  var source = $('#template').html();
+  var template = Handlebars.compile(source);
+  // handlebars append
+  var context = {
+    title: 'Scrivi il nome di un film'
+  };
+  var html = template(context);
+  $('.movies').append(html);
+}
+
+// handlebars init (doesn't work)
+// function handlebarsInit() {
+//   var source = $('#template').html();
+//   var template = Handlebars.compile(source);
+//   return template;
+// }
+
 
 // notes
 // to-do
-// searching an empty string
 // if original title equals title show only one
 // start the search with enter key
 // add language selector
