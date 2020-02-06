@@ -24,7 +24,7 @@ $(document).ready(function (){
 
   // press enter on the keyboard
   $(document).keydown(function() {
-    if (event.which === 13) {
+    if (event.which === 13 || event.keyCode === 13) {
       // query is saved from the input field
       var query = $('.search input').val().toLowerCase();
       console.log(query);
@@ -142,6 +142,11 @@ function noInput() {
 // to-do
 // handlebars init doesn't work
 // click and enter in the same condition
+// movies are sorted by ranking
+// search without enter, just type and automatically update the search
+
+// to fix
+// empty
 
 // API Key (v3 auth)
 // 6258744f8a6314eddb8961371f91076e
