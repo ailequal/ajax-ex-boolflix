@@ -1,5 +1,11 @@
 $(document).ready(function (){
 
+  // store language option variable (doesn't work)
+  // $(document).on('click', '.search select', function() {
+  //   var language = $('.search select').val();
+  //   console.log(language);
+  // });
+
   // click on the button 'cerca'
   $(document).on('click', '.search button', function() {
     // query is saved from the input field
@@ -45,7 +51,7 @@ function searchMovies(query) {
     data: {
       api_key: '6258744f8a6314eddb8961371f91076e',
       query: query,
-      language: 'it-IT'
+      language: 'it'
     },
     success: function(data, state) {
       var movies = data.results;
@@ -134,7 +140,7 @@ function noInput() {
 // notes
 // to-do
 // handlebars init doesn't work
-// if original title equals title show only one
+// click and enter in the same condition
 // add language selector
 
 // API Key (v3 auth)
