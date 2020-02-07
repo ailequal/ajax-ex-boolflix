@@ -60,7 +60,7 @@ function searchMovies(query, language) {
       if (movies.length !== 0) {
         printMovies(movies);
       } else {
-        noMovies();
+        noResults();
       }
     },
     error: function(request, state, error) {
@@ -71,7 +71,7 @@ function searchMovies(query, language) {
 
 // search every movie in the array and print them in the html
 function printMovies(movies) {
-  var handlebars = handlebarsInit('#template');
+  var handlebars = handlebarsInit('#movies');
   // search every movies
   for (var i = 0; i < movies.length; i++) {
     var movie = movies[i];
@@ -97,30 +97,30 @@ function printMovies(movies) {
     }
     // handlebars append
     var html = handlebars(context);
-    $('.movies').append(html);
+    $('.results').append(html);
   }
 }
 
-// display a message when no movies are found
-function noMovies() {
-  var handlebars = handlebarsInit('#template');
+// display a message when no movies or tv shows are found
+function noResults() {
+  var handlebars = handlebarsInit('#message');
   // handlebars append
   var context = {
     title: 'Nessun film trovato'
   };
   var html = handlebars(context);
-  $('.movies').append(html);
+  $('.results').append(html);
 }
 
 // display a message when nothing is written in the input field
 function noInput() {
-  var handlebars = handlebarsInit('#template');
+  var handlebars = handlebarsInit('#message');
   // handlebars append
   var context = {
     title: 'Scrivi il nome di un film'
   };
   var html = handlebars(context);
-  $('.movies').append(html);
+  $('.results').append(html);
 }
 
 // handlebars init
@@ -168,7 +168,7 @@ function convertFlag(language) {
 
 // clear movies field in the html
 function clearMovies() {
-  $('.movies').text('');
+  $('.results').text('');
 }
 
 // clear input field after the click

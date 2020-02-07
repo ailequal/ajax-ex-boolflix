@@ -18,7 +18,7 @@
   <main>
     <div class="container">
       <div class="search">
-        <input type="text" name="" value="" placeholder="Inserisci il titolo di un film">
+        <input type="text" name="" value="" placeholder="Inserisci il titolo di un film o una serie TV">
         <button>Cerca</button>
         <select>
           <option value="it">Italiano</option>
@@ -28,7 +28,7 @@
           <option value="es">Spagnolo</option>
         </select>
       </div>
-      <ul class="movies">
+      <ul class="results">
         <!-- handlebars -->
       </ul>
     </div>
@@ -38,13 +38,14 @@
     <!-- empty -->
   </footer>
 
-  <script id="template" type="text/x-handlebars-template">
+  <script id="movies" type="text/x-handlebars-template">
     <li>{{title}} {{original_title}} {{original_language}} {{{star}}}</li>
   </script>
-  <script id="test" type="text/x-handlebars-template">
-    <div>
-      {{test}}
-    </div>
+  <script id="tv-series" type="text/x-handlebars-template">
+    <li>{{title}} {{original_title}} {{original_language}} {{{star}}}</li>
+  </script>
+  <script id="message" type="text/x-handlebars-template">
+    <div>{{title}}</div>
   </script>
   <script src="js/script.js" charset="utf-8"></script>
 </body>
