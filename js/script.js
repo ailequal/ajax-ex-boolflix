@@ -118,6 +118,13 @@ function noInput() {
   $('.movies').append(html);
 }
 
+// handlebars init
+function handlebarsInit(template) {
+  var source = $(template).html();
+  var template = Handlebars.compile(source);
+  return template;
+}
+
 // clear movies field in the html
 function clearMovies() {
   $('.movies').text('');
@@ -128,12 +135,11 @@ function clearInput() {
   $('.search input').val('');
 }
 
-// handlebars init
-function handlebarsInit(template) {
-  var source = $(template).html();
-  var template = Handlebars.compile(source);
-  return template;
+// convert a number based in y to based in x
+function oneToX(number, x, y) {
+  return Math.round((number * x) / y);
 }
+
 
 
 // notes
