@@ -145,15 +145,15 @@ function oneToX(number, x, y) {
 // print x full star and y empty star given a total amount
 function printStar(x, total) {
   var star = '';
-  for (var i = 0; i < x; i++) {
-    star += '<i class="fas fa-star"></i>';
-  }
-  for (var i = 0; i < (total - x); i++) {
-    star += '<i class="far fa-star"></i>';
+  for (var i = 0; i < total; i++) {
+    if (i < x) {
+      star += '<i class="fas fa-star"></i>';
+    } else {
+      star += '<i class="far fa-star"></i>';
+    }
   }
   return star;
 }
-
 
 // notes
 // to-do
