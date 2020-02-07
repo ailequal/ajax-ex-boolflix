@@ -6,8 +6,8 @@
 }
 
 body {
-  max-width: 1200px;
-  min-width: 320px;
+  min-width: 992px;
+  background-color: #141414;
   font-family: sans-serif;
   font-size: 16px;
 }
@@ -17,6 +17,11 @@ h1 {
   text-align: center;
 }
 
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
 .container {
   max-width: 992px;
   width: 70%;
@@ -24,6 +29,42 @@ h1 {
 }
 
 /* header */
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-bar ul {
+  list-style: none;
+}
+
+.nav-bar a {
+  font-size: 18px;
+  color: #ffffff;
+}
+
+.nav-bar .logo img,
+.nav-bar .user img {
+  height: 40px;
+}
+
+.nav-left ul,
+.nav-right ul {
+  display: flex;
+  align-items: center;
+}
+
+.nav-left li,
+.nav-right li {
+  margin: 10px;
+}
+
+.nav-right .search input,
+.nav-right .search a,
+.nav-right .search select {
+  margin: 5px;
+}
 
 /* main */
 .movies {
@@ -35,3 +76,8 @@ h1 {
 }
 
 /* footer */
+
+/* toggles */
+.selected {
+  font-weight: 700;
+}

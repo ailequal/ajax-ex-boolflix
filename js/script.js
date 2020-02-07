@@ -8,7 +8,7 @@ $(document).ready(function (){
   });
 
   // click on the button 'cerca'
-  $(document).on('click', '.search button', function() {
+  $(document).on('click', '.search a', function() {
     // query is saved from the input field
     var query = $('.search input').val().toLowerCase();
     console.log(query);
