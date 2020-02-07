@@ -17,6 +17,11 @@ $(document).ready(function (){
       clearResults();
       searchMovies(query, language);
       searchTvShows(query, language);
+      setTimeout(function() {
+        if ($('.results').text() === '') {
+          noResults();
+        }
+      }, 1000);
     } else {
       clearResults();
       noInput();
@@ -34,6 +39,11 @@ $(document).ready(function (){
         clearResults();
         searchMovies(query, language);
         searchTvShows(query, language);
+        setTimeout(function() {
+          if ($('.results').text() === '') {
+            noResults();
+          }
+        }, 1000);
       } else {
         clearResults();
         noInput();
@@ -59,11 +69,7 @@ function searchMovies(query, language) {
     success: function(data, state) {
       var movies = data.results;
       console.log(movies);
-      if (movies.length !== 0) {
-        printMovies(movies);
-      } else {
-        noResults();
-      }
+      printMovies(movies);
     },
     error: function(request, state, error) {
       console.log(error);
@@ -117,11 +123,7 @@ function searchTvShows(query, language) {
     success: function(data, state) {
       var tvShows = data.results;
       console.log(tvShows);
-      if (tvShows.length !== 0) {
-        printTvShows(tvShows);
-      } else {
-        noResults();
-      }
+      printTvShows(tvShows);
     },
     error: function(request, state, error) {
       console.log(error);
