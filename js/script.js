@@ -76,19 +76,20 @@ function printMovies(movies) {
   for (var i = 0; i < movies.length; i++) {
     var movie = movies[i];
     var vote = oneToX(movie.vote_average, 5, 10);
+    var star = printStar(vote, 5);
     // check if the title is the same as the original title
     if (movie.title === movie.original_title) {
       var context = {
         title: movie.title,
         original_language: movie.original_language,
-        vote_average: vote,
+        star: star,
       };
     } else {
       var context = {
         title: movie.title,
         original_title: movie.original_title,
         original_language: movie.original_language,
-        vote_average: vote,
+        star: star,
       };
     }
     // handlebars append
@@ -139,6 +140,18 @@ function clearInput() {
 // convert a number based in y to based in x
 function oneToX(number, x, y) {
   return Math.round((number * x) / y);
+}
+
+// print x full star and y empty star given a total amount
+function printStar(x, total) {
+  var star = '';
+  for (var i = 0; i < x; i++) {
+    star += '<i class="fas fa-star"></i>';
+  }
+  for (var i = 0; i < (total - x); i++) {
+    star += '<i class="far fa-star"></i>';
+  }
+  return star;
 }
 
 
