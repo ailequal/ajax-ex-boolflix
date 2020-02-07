@@ -23,7 +23,7 @@ $(document).ready(function (){
   });
 
   // press enter on the keyboard
-  $(document).keydown(function() {
+  $('.search input').keydown(function() {
     if (event.which === 13 || event.keyCode === 13) {
       // query is saved from the input field
       var query = $('.search input').val().toLowerCase();
