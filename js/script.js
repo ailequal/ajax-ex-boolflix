@@ -64,7 +64,7 @@ function searchMovies(query, language) {
     data: {
       api_key: '6258744f8a6314eddb8961371f91076e',
       language: language,
-      query: query,
+      query: query
     },
     success: function(data, state) {
       var movies = data.results;
@@ -94,6 +94,7 @@ function printMovies(movies) {
         title: movie.title,
         original_language: flag,
         star: star,
+        poster_path: movie.poster_path
       };
     } else {
       var context = {
@@ -101,6 +102,7 @@ function printMovies(movies) {
         original_title: movie.original_title,
         original_language: flag,
         star: star,
+        poster_path: movie.poster_path
       };
     }
     // handlebars append
@@ -118,7 +120,7 @@ function searchTvShows(query, language) {
     data: {
       api_key: '6258744f8a6314eddb8961371f91076e',
       language: language,
-      query: query,
+      query: query
     },
     success: function(data, state) {
       var tvShows = data.results;
@@ -148,6 +150,7 @@ function printTvShows(tvShows) {
         name: tvShow.name,
         original_language: flag,
         star: star,
+        poster_path: tvShow.poster_path
       };
     } else {
       var context = {
@@ -155,6 +158,7 @@ function printTvShows(tvShows) {
         original_title: tvShow.original_title,
         original_language: flag,
         star: star,
+        poster_path: tvShow.poster_path
       };
     }
     // handlebars append
@@ -260,3 +264,7 @@ function clearInput() {
 // titilo originale = original_title
 // lingua = original_language
 // voto = vote_average
+
+// img base link
+// https://image.tmdb.org/t/p/
+// https://image.tmdb.org/t/p/w185/s2VDcsMh9ZhjFUxw77uCFDpTuXp.jpg
