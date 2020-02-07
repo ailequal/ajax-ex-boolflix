@@ -75,20 +75,23 @@ function printMovies(movies) {
   // search every movies
   for (var i = 0; i < movies.length; i++) {
     var movie = movies[i];
+    // convert raking in stars
     var vote = oneToX(movie.vote_average, 5, 10);
     var star = printStar(vote, 5);
+    // convert original_language in flag
+    var flag = convertFlag(movie.original_language);
     // check if the title is the same as the original title
     if (movie.title === movie.original_title) {
       var context = {
         title: movie.title,
-        original_language: movie.original_language,
+        original_language: flag,
         star: star,
       };
     } else {
       var context = {
         title: movie.title,
         original_title: movie.original_title,
-        original_language: movie.original_language,
+        original_language: flag,
         star: star,
       };
     }
@@ -127,16 +130,6 @@ function handlebarsInit(template) {
   return template;
 }
 
-// clear movies field in the html
-function clearMovies() {
-  $('.movies').text('');
-}
-
-// clear input field after the click
-function clearInput() {
-  $('.search input').val('');
-}
-
 // convert a number based in y to based in x
 function oneToX(number, x, y) {
   return Math.round((number * x) / y);
@@ -154,6 +147,35 @@ function printStar(x, total) {
   }
   return star;
 }
+
+// convert language iso 639-1 to an emoji flag
+function convertFlag(language) {
+  if (language === 'it') {
+    language = '🇮🇹';
+  } else if (language === 'en') {
+    language = '🇺🇸';
+  } else if (language === 'fr') {
+    language = '🇫🇷';
+  } else if (language === 'de') {
+    language = '🇩🇪';
+  } else if (language === 'es') {
+    language = '🇪🇸';
+  } else {
+    language = '🏳️';
+  }
+  return language;
+}
+
+// clear movies field in the html
+function clearMovies() {
+  $('.movies').text('');
+}
+
+// clear input field after the click
+function clearInput() {
+  $('.search input').val('');
+}
+
 
 // notes
 // to-do
