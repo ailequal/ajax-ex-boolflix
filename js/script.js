@@ -71,9 +71,7 @@ function searchMovies(query, language) {
 
 // search every movie in the array and print them in the html
 function printMovies(movies) {
-  // handlebars init
-  var source = $('#template').html();
-  var template = Handlebars.compile(source);
+  var handlebars = handlebarsInit('#template');
   // search every movies
   for (var i = 0; i < movies.length; i++) {
     var movie = movies[i];
@@ -93,34 +91,30 @@ function printMovies(movies) {
       };
     }
     // handlebars append
-    var html = template(context);
+    var html = handlebars(context);
     $('.movies').append(html);
   }
 }
 
 // display a message when no movies are found
 function noMovies() {
-  // handlebars init
-  var source = $('#template').html();
-  var template = Handlebars.compile(source);
+  var handlebars = handlebarsInit('#template');
   // handlebars append
   var context = {
     title: 'Nessun film trovato'
   };
-  var html = template(context);
+  var html = handlebars(context);
   $('.movies').append(html);
 }
 
 // display a message when nothing is written in the input field
 function noInput() {
-  // handlebars init
-  var source = $('#template').html();
-  var template = Handlebars.compile(source);
+  var handlebars = handlebarsInit('#template');
   // handlebars append
   var context = {
     title: 'Scrivi il nome di un film'
   };
-  var html = template(context);
+  var html = handlebars(context);
   $('.movies').append(html);
 }
 
@@ -134,17 +128,16 @@ function clearInput() {
   $('.search input').val('');
 }
 
-// handlebars init (doesn't work)
-// function handlebarsInit() {
-//   var source = $('#template').html();
-//   var template = Handlebars.compile(source);
-//   return template;
-// }
+// handlebars init
+function handlebarsInit(template) {
+  var source = $(template).html();
+  var template = Handlebars.compile(source);
+  return template;
+}
 
 
 // notes
 // to-do
-// handlebars init doesn't work
 // click and enter in the same condition
 // movies are sorted by ranking
 // search without enter, just type and automatically update the search
