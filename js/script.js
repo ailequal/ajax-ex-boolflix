@@ -51,8 +51,8 @@ function searchMovies(query, language) {
     method: "GET",
     data: {
       api_key: '6258744f8a6314eddb8961371f91076e',
+      language: language,
       query: query,
-      language: language
     },
     success: function(data, state) {
       var movies = data.results;
@@ -75,19 +75,20 @@ function printMovies(movies) {
   // search every movies
   for (var i = 0; i < movies.length; i++) {
     var movie = movies[i];
+    var vote = oneToX(movie.vote_average, 5, 10);
     // check if the title is the same as the original title
     if (movie.title === movie.original_title) {
       var context = {
         title: movie.title,
         original_language: movie.original_language,
-        vote_average: movie.vote_average,
+        vote_average: vote,
       };
     } else {
       var context = {
         title: movie.title,
         original_title: movie.original_title,
         original_language: movie.original_language,
-        vote_average: movie.vote_average,
+        vote_average: vote,
       };
     }
     // handlebars append
@@ -141,12 +142,12 @@ function oneToX(number, x, y) {
 }
 
 
-
 // notes
 // to-do
 // click and enter in the same condition
 // movies are sorted by ranking
 // search without enter, just type and automatically update the search
+// ranking also with half stars
 
 // to fix
 // empty
