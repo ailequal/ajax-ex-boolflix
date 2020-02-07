@@ -79,7 +79,7 @@ function searchMovies(query, language) {
 
 // search every movie in the array and print them in the html
 function printMovies(movies) {
-  var handlebars = handlebarsInit('#movies');
+  var handlebars = handlebarsInit('#movie');
   // search every movies
   for (var i = 0; i < movies.length; i++) {
     var movie = movies[i];
@@ -135,7 +135,7 @@ function searchTvShows(query, language) {
 
 // search every tv shows in the array and print them in the html
 function printTvShows(tvShows) {
-  var handlebars = handlebarsInit('#tv-shows');
+  var handlebars = handlebarsInit('#tv-show');
   // search every tv shows
   for (var i = 0; i < tvShows.length; i++) {
     var tvShow = tvShows[i];
@@ -172,7 +172,7 @@ function noResults() {
   var handlebars = handlebarsInit('#message');
   // handlebars append
   var context = {
-    title: 'Nessun film o serie TV corrispondono alla ricerca effettuata'
+    message: 'Nessun film o serie TV corrispondono alla ricerca effettuata'
   };
   var html = handlebars(context);
   $('.results').append(html);
@@ -183,7 +183,7 @@ function noInput() {
   var handlebars = handlebarsInit('#message');
   // handlebars append
   var context = {
-    title: 'Scrivi il nome di un film o una serie TV'
+    message: 'Scrivi il nome di un film o una serie TV'
   };
   var html = handlebars(context);
   $('.results').append(html);

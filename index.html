@@ -47,9 +47,18 @@
 
   <main>
     <div class="container">
-      <ul class="results">
+      <div class="results">
         <!-- handlebars -->
-      </ul>
+        <div class="movie result">
+          <img src="https://image.tmdb.org/t/p/w154/pTpxQB1N0waaSc3OSn0e9oc8kx9.jpg" alt="poster">
+          <h2>title</h2>
+          <h3>origianl_title</h3>
+          <div>
+            <span>original_language type</span>
+            <span>star</span>
+          </div>
+        </div>
+      </div>
     </div>
   </main>
 
@@ -57,14 +66,30 @@
     <!-- empty -->
   </footer>
 
-  <script id="movies" type="text/x-handlebars-template">
-    <li class="movies">{{title}} {{original_title}} {{original_language}} {{{star}}} <img src="https://image.tmdb.org/t/p/w154{{poster_path}}" alt="poster"></li>
+  <script id="movie" type="text/x-handlebars-template">
+    <div class="movie result">
+      <img src="https://image.tmdb.org/t/p/w154{{poster_path}}" alt="poster">
+      <h2>{{title}}</h2>
+      <h3>{{original_title}}</h3>
+      <div>
+        <span>{{original_language}} Film</span>
+        <span>{{{star}}}</span>
+      </div>
+    </div>
   </script>
-  <script id="tv-shows" type="text/x-handlebars-template">
-    <li class="tv-shows">{{name}} {{original_title}} {{original_language}} {{{star}}} <img src="https://image.tmdb.org/t/p/w154{{poster_path}}" alt="poster"></li>
+  <script id="tv-show" type="text/x-handlebars-template">
+    <div class="tv-show result">
+      <img src="https://image.tmdb.org/t/p/w154{{poster_path}}" alt="poster">
+      <h2>{{name}}</h2>
+      <h3>{{original_title}}</h3>
+      <div>
+        <span>{{original_language}} Serie TV</span>
+        <span>{{{star}}}</span>
+      </div>
+    </div>
   </script>
   <script id="message" type="text/x-handlebars-template">
-    <div>{{title}}</div>
+    <h2 class="message">{{message}}</h2>
   </script>
   <script src="js/script.js" charset="utf-8"></script>
 </body>

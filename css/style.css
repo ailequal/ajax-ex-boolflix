@@ -23,8 +23,8 @@ a {
 }
 
 .container {
-  max-width: 992px;
-  width: 70%;
+  max-width: 1200px;
+  width: 90%;
   margin: auto;
 }
 
@@ -67,6 +67,41 @@ a {
 }
 
 /* main */
+.results {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  color: #ffffff;
+}
+
+.result {
+  display: inline-block;
+  background-color: #282828;
+  text-align: center;
+}
+
+.result img,
+.result h2,
+.result h3,
+.result div {
+  margin: 10px;
+}
+
+.result div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+}
+
+/* debug .movies and .tv-shows */
 .movies {
   background-color: lightblue;
 }
@@ -76,6 +111,7 @@ a {
 }
 
 /* footer */
+/* empty */
 
 /* toggles */
 .selected {
