@@ -13,11 +13,11 @@ $(document).ready(function (){
     var query = $('.search input').val().toLowerCase();
     console.log(query);
     if (query !== '') {
-      // clear input field after the click
-      $('.search input').val('');
-      // start search function
+      clearInput();
+      clearMovies();
       searchMovies(query, language);
     } else {
+      clearMovies();
       noInput();
     }
   });
@@ -29,11 +29,11 @@ $(document).ready(function (){
       var query = $('.search input').val().toLowerCase();
       console.log(query);
       if (query !== '') {
-        // clear input field after the keypress
-        $('.search input').val('');
-        // start search function
+        clearInput();
+        clearMovies();
         searchMovies(query, language);
       } else {
+        clearMovies();
         noInput();
       }
     }
@@ -43,7 +43,7 @@ $(document).ready(function (){
 
 
 // function
-// search the query using the api_key
+// search and print the results
 function searchMovies(query, language) {
   // ajax calling themoviedb.org api for searching movies (max 20 displayed)
   $.ajax({
@@ -56,8 +56,8 @@ function searchMovies(query, language) {
     },
     success: function(data, state) {
       var movies = data.results;
+      console.log(movies);
       if (movies.length !== 0) {
-        console.log(movies);
         printMovies(movies);
       } else {
         noMovies();
@@ -71,8 +71,6 @@ function searchMovies(query, language) {
 
 // search every movie in the array and print them in the html
 function printMovies(movies) {
-  // clear movies field in the html
-  $('.movies').text('');
   // handlebars init
   var source = $('#template').html();
   var template = Handlebars.compile(source);
@@ -102,8 +100,6 @@ function printMovies(movies) {
 
 // display a message when no movies are found
 function noMovies() {
-  // clear movies field in the html
-  $('.movies').text('');
   // handlebars init
   var source = $('#template').html();
   var template = Handlebars.compile(source);
@@ -117,8 +113,6 @@ function noMovies() {
 
 // display a message when nothing is written in the input field
 function noInput() {
-  // clear movies field in the html
-  $('.movies').text('');
   // handlebars init
   var source = $('#template').html();
   var template = Handlebars.compile(source);
@@ -128,6 +122,16 @@ function noInput() {
   };
   var html = template(context);
   $('.movies').append(html);
+}
+
+// clear movies field in the html
+function clearMovies() {
+  $('.movies').text('');
+}
+
+// clear input field after the click
+function clearInput() {
+  $('.search input').val('');
 }
 
 // handlebars init (doesn't work)
