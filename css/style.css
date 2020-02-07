@@ -26,5 +26,12 @@ h1 {
 /* header */
 
 /* main */
+.movies {
+  background-color: lightblue;
+}
+
+.tv-shows {
+  background-color: lightgreen;
+}
 
 /* footer */

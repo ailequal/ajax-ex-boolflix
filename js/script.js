@@ -14,10 +14,11 @@ $(document).ready(function (){
     console.log(query);
     if (query !== '') {
       clearInput();
-      clearMovies();
+      clearResults();
       searchMovies(query, language);
+      searchTvShows(query, language);
     } else {
-      clearMovies();
+      clearResults();
       noInput();
     }
   });
@@ -30,10 +31,11 @@ $(document).ready(function (){
       console.log(query);
       if (query !== '') {
         clearInput();
-        clearMovies();
+        clearResults();
         searchMovies(query, language);
+        searchTvShows(query, language);
       } else {
-        clearMovies();
+        clearResults();
         noInput();
       }
     }
@@ -43,7 +45,7 @@ $(document).ready(function (){
 
 
 // function
-// search and print the results
+// search movies and print the results
 function searchMovies(query, language) {
   // ajax calling themoviedb.org api for searching movies (max 20 displayed)
   $.ajax({
@@ -101,12 +103,70 @@ function printMovies(movies) {
   }
 }
 
+// search tv shows and print the results
+function searchTvShows(query, language) {
+  // ajax calling themoviedb.org api for searching tv shows (max 20 displayed)
+  $.ajax({
+    url: "https://api.themoviedb.org/3/search/tv",
+    method: "GET",
+    data: {
+      api_key: '6258744f8a6314eddb8961371f91076e',
+      language: language,
+      query: query,
+    },
+    success: function(data, state) {
+      var tvShows = data.results;
+      console.log(tvShows);
+      if (tvShows.length !== 0) {
+        printTvShows(tvShows);
+      } else {
+        noResults();
+      }
+    },
+    error: function(request, state, error) {
+      console.log(error);
+    }
+  });
+}
+
+// search every tv shows in the array and print them in the html
+function printTvShows(tvShows) {
+  var handlebars = handlebarsInit('#tv-shows');
+  // search every tv shows
+  for (var i = 0; i < tvShows.length; i++) {
+    var tvShow = tvShows[i];
+    // convert raking in stars
+    var vote = oneToX(tvShow.vote_average, 5, 10);
+    var star = printStar(vote, 5);
+    // convert original_language in flag
+    var flag = convertFlag(tvShow.original_language);
+    // check if the title is the same as the original title
+    if (tvShow.name === tvShow.original_name) {
+      var context = {
+        name: tvShow.name,
+        original_language: flag,
+        star: star,
+      };
+    } else {
+      var context = {
+        name: tvShow.name,
+        original_title: tvShow.original_title,
+        original_language: flag,
+        star: star,
+      };
+    }
+    // handlebars append
+    var html = handlebars(context);
+    $('.results').append(html);
+  }
+}
+
 // display a message when no movies or tv shows are found
 function noResults() {
   var handlebars = handlebarsInit('#message');
   // handlebars append
   var context = {
-    title: 'Nessun film trovato'
+    title: 'Nessun film o serie TV corrispondono alla ricerca effettuata'
   };
   var html = handlebars(context);
   $('.results').append(html);
@@ -117,7 +177,7 @@ function noInput() {
   var handlebars = handlebarsInit('#message');
   // handlebars append
   var context = {
-    title: 'Scrivi il nome di un film'
+    title: 'Scrivi il nome di un film o una serie TV'
   };
   var html = handlebars(context);
   $('.results').append(html);
@@ -166,8 +226,8 @@ function convertFlag(language) {
   return language;
 }
 
-// clear movies field in the html
-function clearMovies() {
+// clear .results field in the html
+function clearResults() {
   $('.results').text('');
 }
 
