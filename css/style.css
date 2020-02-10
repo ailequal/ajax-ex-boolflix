@@ -26,6 +26,16 @@ a {
 
 
 /* header */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  max-width: 1200px;
+  width: 90%;
+  margin: auto;
+  background-color: #141414;
+  z-index: 1;
+}
+
 .nav-bar ul {
   list-style: none;
 }
@@ -131,6 +141,10 @@ a {
 }
 
 /* main */
+main {
+  margin: 126.75px 0 0 0;
+}
+
 .results {
   display: flex;
   justify-content: space-around;
@@ -243,6 +257,5 @@ a {
 
 
 /* to-fix */
-/* header with position: fixed doesn't work with flex */
 /* handle no poster_path 404  */
 /* transition hover effect */
