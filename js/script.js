@@ -100,6 +100,7 @@ function printMovies(movies) {
         title: movie.title,
         original_language: flag,
         star: star,
+        overview: movie.overview,
         poster_path: movie.poster_path
       };
     } else {
@@ -108,6 +109,7 @@ function printMovies(movies) {
         original_title: movie.original_title,
         original_language: flag,
         star: star,
+        overview: movie.overview,
         poster_path: movie.poster_path
       };
     }
@@ -156,6 +158,7 @@ function printTvShows(tvShows) {
         name: tvShow.name,
         original_language: flag,
         star: star,
+        overview: tvShow.overview,
         poster_path: tvShow.poster_path
       };
     } else {
@@ -164,6 +167,7 @@ function printTvShows(tvShows) {
         original_title: tvShow.original_title,
         original_language: flag,
         star: star,
+        overview: movie.overview,
         poster_path: tvShow.poster_path
       };
     }

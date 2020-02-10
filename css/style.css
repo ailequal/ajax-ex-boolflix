@@ -101,6 +101,7 @@ a {
   width: 100%;
   height: 100vh;
   background-color: #141414;
+  z-index: 1;
 }
 
 .hamburger-menu ul {
@@ -131,26 +132,47 @@ a {
 
 /* main */
 .results {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
   margin: 10px 0 40px 0;
   color: #ffffff;
 }
 
 .result {
-  display: inline-block;
-  background-color: #282828;
-  text-align: center;
-}
-
-.result > * {
+  position: relative;
+  width: 240px;
+  height: 360px;
+  background-size: contain;
   margin: 10px;
+  color: #ffffff;
 }
 
-.result div {
+.result .info {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
+}
+
+.result:hover .info {
+  display: block;
+  border: 2px solid #ffffff;
+  padding: 10px;
+  background-color: hsla(0, 0%, 0%, 0.90);
+}
+
+.result .info > * {
+  margin: 20px 10px;
+}
+
+.result .info div {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -161,7 +183,6 @@ a {
   transform: translate(-50%, -50%);
   font-size: 40px;
 }
-
 
 /* footer */
 /* empty */
@@ -223,3 +244,5 @@ a {
 
 /* to-fix */
 /* header with position: fixed doesn't work with flex */
+/* handle no poster_path 404  */
+/* transition hover effect */

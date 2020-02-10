@@ -84,16 +84,8 @@
   <main>
     <div class="container">
       <div class="results">
+        <h2 class="message">Benvenuto in BoolFlix!</h2>
         <!-- handlebars -->
-        <div class="movie result">
-          <img src="https://image.tmdb.org/t/p/w154/pTpxQB1N0waaSc3OSn0e9oc8kx9.jpg" alt="poster">
-          <h2>title</h2>
-          <h3>origianl_title</h3>
-          <div>
-            <span>original_language type</span>
-            <span>star</span>
-          </div>
-        </div>
       </div>
     </div>
   </main>
@@ -103,24 +95,28 @@
   </footer>
 
   <script id="movie" type="text/x-handlebars-template">
-    <div class="movie result">
-      <img src="https://image.tmdb.org/t/p/w154{{poster_path}}" alt="poster">
-      <h2>{{title}}</h2>
-      <h3>{{original_title}}</h3>
-      <div>
-        <span>{{original_language}} Film</span>
-        <span>{{{star}}}</span>
+    <div class="movie result" style="background-image: url(https://image.tmdb.org/t/p/w300{{poster_path}});">
+      <div class="info">
+        <h2>{{title}}</h2>
+        <h3>{{original_title}}</h3>
+        <div>
+          <span>{{original_language}} Film</span>
+          <span>{{{star}}}</span>
+        </div>
+        <p>{{overview}}</p>
       </div>
     </div>
   </script>
   <script id="tv-show" type="text/x-handlebars-template">
-    <div class="tv-show result">
-      <img src="https://image.tmdb.org/t/p/w154{{poster_path}}" alt="poster">
-      <h2>{{name}}</h2>
-      <h3>{{original_title}}</h3>
-      <div>
-        <span>{{original_language}} Serie TV</span>
-        <span>{{{star}}}</span>
+    <div class="tv-show result" style="background-image: url(https://image.tmdb.org/t/p/w300{{poster_path}});">
+      <div class="info">
+        <h2>{{name}}</h2>
+        <h3>{{original_title}}</h3>
+        <div>
+          <span>{{original_language}} Serie TV</span>
+          <span>{{{star}}}</span>
+        </div>
+        <p>{{overview}}</p>
       </div>
     </div>
   </script>
