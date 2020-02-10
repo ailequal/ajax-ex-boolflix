@@ -24,6 +24,7 @@ a {
   margin: auto;
 }
 
+
 /* header */
 .nav-bar ul {
   list-style: none;
@@ -39,6 +40,19 @@ a {
   height: 36px;
 }
 
+.nav-bar .user a {
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar .user img {
+  margin: 0 10px 0 0;
+}
+
+.nav-bar .hamburger-icon a {
+  font-size: 28px;
+}
+
 .nav-desktop,
 .nav-mobile {
   display: flex;
@@ -47,23 +61,8 @@ a {
   flex-wrap: wrap;
 }
 
-.nav-desktop .user a {
-  display: flex;
-  align-items: center;
-}
-
-.nav-desktop .user img {
-  margin: 0 10px 0 0;
-}
-
 .nav-mobile {
   display: none;
-}
-
-.nav-bottom {
-  flex-basis: 100%;
-  display: flex;
-  justify-content: center;
 }
 
 .nav-left ul,
@@ -78,6 +77,9 @@ a {
 }
 
 .nav-bottom {
+  flex-basis: 100%;
+  display: flex;
+  justify-content: center;
   margin: 0 0 20px 0;
 }
 
@@ -85,11 +87,54 @@ a {
   margin: 5px;
 }
 
+.nav-bottom input {
+  height: 20px;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.hamburger-menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #141414;
+}
+
+.hamburger-menu ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
+
+.hamburger-menu ul > * {
+  margin: 10px;
+}
+
+.hamburger-menu a {
+  font-size: 24px;
+}
+
+.nav-bar .logo img {
+  height: 50px;
+}
+
+.hamburger-menu .hamburger-icon {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+}
+
 /* main */
 .results {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-gap: 10px;
+  margin: 10px 0 40px 0;
   color: #ffffff;
 }
 
@@ -117,17 +162,15 @@ a {
   font-size: 40px;
 }
 
+
 /* footer */
 /* empty */
 
-/* media queries */
-@media screen and (min-width: 768px) {
-  .nav-desktop {
-    display: flex;
-  }
 
-  .nav-mobile {
-    display: none;
+/* media queries */
+@media screen and (max-width: 1200px) {
+  .results {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 
@@ -139,9 +182,44 @@ a {
   .nav-mobile {
     display: flex;
   }
+
+  .results {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
+
+@media screen and (max-width: 576px) {
+  .results {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 
 /* toggles */
 .selected {
   font-weight: 700;
 }
+
+.display-none {
+  display: none;
+}
+
+.display-inline-block {
+  display: inline-block;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.overflow-y-hidden {
+  overflow-y: hidden;
+}
+
+
+/* to-fix */
+/* header with position: fixed doesn't work with flex */

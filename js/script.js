@@ -1,5 +1,11 @@
 $(document).ready(function (){
 
+  // toggle hamburger-menu
+  $(document).on('click', '.hamburger-icon', function() {
+    $('body').toggleClass('overflow-y-hidden');
+    $('.hamburger-menu').toggleClass('display-block');
+  });
+
   // store language option variable
   var language = 'it';
   $(document).on('change', '.search .language', function() {
@@ -243,28 +249,9 @@ function clearInput() {
 }
 
 
-// notes
 // to-do
 // click and enter in the same condition
 // movies are sorted by ranking
 // search without enter, just type and automatically update the search
 // ranking also with half stars
-
-// to fix
-// empty
-
-// API Key (v3 auth)
-// 6258744f8a6314eddb8961371f91076e
-
-// search example
-// https://api.themoviedb.org/3/search/movie?api_key=6258744f8a6314eddb8961371f91076e&query=back to the future
-
-// movie object keys
-// titolo = title
-// titilo originale = original_title
-// lingua = original_language
-// voto = vote_average
-
-// img base link
-// https://image.tmdb.org/t/p/
-// https://image.tmdb.org/t/p/w185/s2VDcsMh9ZhjFUxw77uCFDpTuXp.jpg
+// genre selection
