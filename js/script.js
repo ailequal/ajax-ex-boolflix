@@ -2,8 +2,8 @@ $(document).ready(function (){
 
   // store language option variable
   var language = 'it';
-  $(document).on('change', '.search select', function() {
-    language = $('.search select').val();
+  $(document).on('change', '.search .language', function() {
+    language = $('.search .language').val();
     console.log(language);
   });
 
