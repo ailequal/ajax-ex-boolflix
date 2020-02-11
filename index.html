@@ -54,7 +54,7 @@
 						<input type="text" name="" value="" placeholder="Film, Serie TV...">
 						<a href="#"><i class="fas fa-search"></i></a>
 						<select class="genre">
-							<option value="">Genere</option>
+							<option value="all">Tutti i generi</option>
 							<option value="16">Animazione</option>
 							<option value="35">Commedia</option>
 							<option value="10751">Famiglia</option>
@@ -101,7 +101,7 @@
 	</footer>
 
 	<script id="movie" type="text/x-handlebars-template">
-		<div class="movie result" style="background-image: url({{poster_path}});">
+		<div class="movie result" style="background-image: url({{poster_path}});" data-attribute="all,{{genre_ids}}">
 			<div class="info">
 				<h2>{{title}}</h2>
 				<h3>{{original_title}}</h3>
@@ -114,7 +114,7 @@
 		</div>
 	</script>
 	<script id="tv-show" type="text/x-handlebars-template">
-		<div class="tv-show result" style="background-image: url({{poster_path}});">
+		<div class="tv-show result" style="background-image: url({{poster_path}});" data-attribute="all,{{genre_ids}}">
 			<div class="info">
 				<h2>{{name}}</h2>
 				<h3>{{original_title}}</h3>

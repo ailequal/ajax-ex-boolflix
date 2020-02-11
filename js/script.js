@@ -6,6 +6,15 @@ $(document).ready(function () {
 		$('.hamburger-menu').toggleClass('display-block');
 	});
 
+	// store genre option variable
+	var genre = 'all';
+	$(document).on('change', '.search .genre', function () {
+		genre = $('.search .genre').val();
+		console.log(genre);
+		// filter by genre the .result
+		filterByGenre(genre);
+	});
+
 	// store language option variable
 	var language = 'it';
 	$(document).on('change', '.search .language', function () {
@@ -21,8 +30,8 @@ $(document).ready(function () {
 		if (query !== '') {
 			clearInput();
 			clearResults();
-			searchMovies(query, language);
-			searchTvShows(query, language);
+			searchMovies(query, language, genre);
+			searchTvShows(query, language, genre);
 			setTimeout(function () {
 				if ($('.results').text() === '') {
 					noResults();
@@ -43,8 +52,8 @@ $(document).ready(function () {
 			if (query !== '') {
 				clearInput();
 				clearResults();
-				searchMovies(query, language);
-				searchTvShows(query, language);
+				searchMovies(query, language, genre);
+				searchTvShows(query, language, genre);
 				setTimeout(function () {
 					if ($('.results').text() === '') {
 						noResults();
@@ -62,7 +71,7 @@ $(document).ready(function () {
 
 // function
 // search movies and print the results
-function searchMovies(query, language) {
+function searchMovies(query, language, genre) {
 	// ajax calling themoviedb.org api for searching movies (max 20 displayed)
 	$.ajax({
 		url: "https://api.themoviedb.org/3/search/movie",
@@ -75,7 +84,7 @@ function searchMovies(query, language) {
 		success: function (data, state) {
 			var movies = data.results;
 			console.log(movies);
-			printMovies(movies);
+			printMovies(movies, genre);
 		},
 		error: function (request, state, error) {
 			console.log(error);
@@ -84,7 +93,7 @@ function searchMovies(query, language) {
 }
 
 // search every movie in the array and print them in the html
-function printMovies(movies) {
+function printMovies(movies, genre) {
 	var handlebars = handlebarsInit('#movie');
 	// search every movies
 	for (var i = 0; i < movies.length; i++) {
@@ -102,18 +111,21 @@ function printMovies(movies) {
 			original_language: flag,
 			star: star,
 			overview: movie.overview,
-			poster_path: posterPath
+			poster_path: posterPath,
+			genre_ids: movie.genre_ids
 		};
 		// check if the title is the same as the original title
 		checkTitle(movie, context);
 		// handlebars append
 		var html = handlebars(context);
 		$('.results').append(html);
+		// filter by genre the .result
+		filterByGenre(genre);
 	}
 }
 
 // search tv shows and print the results
-function searchTvShows(query, language) {
+function searchTvShows(query, language, genre) {
 	// ajax calling themoviedb.org api for searching tv shows (max 20 displayed)
 	$.ajax({
 		url: "https://api.themoviedb.org/3/search/tv",
@@ -126,7 +138,7 @@ function searchTvShows(query, language) {
 		success: function (data, state) {
 			var tvShows = data.results;
 			console.log(tvShows);
-			printTvShows(tvShows);
+			printTvShows(tvShows, genre);
 		},
 		error: function (request, state, error) {
 			console.log(error);
@@ -135,7 +147,7 @@ function searchTvShows(query, language) {
 }
 
 // search every tv shows in the array and print them in the html
-function printTvShows(tvShows) {
+function printTvShows(tvShows, genre) {
 	var handlebars = handlebarsInit('#tv-show');
 	// search every tv shows
 	for (var i = 0; i < tvShows.length; i++) {
@@ -153,13 +165,16 @@ function printTvShows(tvShows) {
 			original_language: flag,
 			star: star,
 			overview: tvShow.overview,
-			poster_path: posterPath
+			poster_path: posterPath,
+			genre_ids: tvShow.genre_ids
 		};
 		// check if the title is the same as the original title
 		checkTitle(tvShow, context);
 		// handlebars append
 		var html = handlebars(context);
 		$('.results').append(html);
+		// filter by genre the .result
+		filterByGenre(genre);
 	}
 }
 
@@ -244,6 +259,18 @@ function checkTitle(object, context) {
 	}
 }
 
+// filter the results with the genre selected
+function filterByGenre(genre) {
+	$('.results .result').each(function () {
+		// reset display to all the .result
+		$(this).removeClass('display-none');
+		// add .display-none if genre doesn't match
+		if (!($(this).attr('data-attribute').includes(genre))) {
+			$(this).addClass('display-none');
+		}
+	});
+}
+
 // clear .results field in the html
 function clearResults() {
 	$('.results').text('');
@@ -256,8 +283,8 @@ function clearInput() {
 
 
 // to-do
-// click and enter in the same condition
+// click and enter in the same condition (not possible??)
 // movies are sorted by ranking
-// search without enter, just type and automatically update the search
+// search without enter, just type and automatically update the search (not really needed)
 // ranking also with half stars
-// genre selection
+// show some actors
