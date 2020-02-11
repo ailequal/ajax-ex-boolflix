@@ -1,5 +1,10 @@
 $(document).ready(function () {
 
+	// clicking on the logo reloads the webpage
+	$(document).on('click', '.logo', function () {
+		location.reload();
+	});
+
 	// toggle hamburger-menu
 	$(document).on('click', '.hamburger-icon', function () {
 		$('body').toggleClass('overflow-y-hidden');
@@ -284,7 +289,7 @@ function clearInput() {
 
 // to-do
 // click and enter in the same condition (not possible??)
-// movies are sorted by ranking
 // search without enter, just type and automatically update the search (not really needed)
-// ranking also with half stars
+// movies are sorted by ranking
 // show some actors
+// ranking also with half stars
