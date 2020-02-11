@@ -164,7 +164,9 @@ main {
 }
 
 .result .info {
-	display: none;
+	visibility: hidden;
+	opacity: 0;
+	transition: opacity 0.3s linear;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -174,7 +176,8 @@ main {
 }
 
 .result:hover .info {
-	display: block;
+	visibility: visible;
+	opacity: 1;
 	border: 2px solid #ffffff;
 	padding: 10px;
 	background-color: hsla(0, 0%, 0%, 0.90);
@@ -254,7 +257,3 @@ main {
 .overflow-y-hidden {
 	overflow-y: hidden;
 }
-
-
-/* to-fix */
-/* transition hover effect */
